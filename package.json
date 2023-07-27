@@ -85,6 +85,7 @@
     "bin",
     "dist",
     "src",
+    "data",
     "!*/__tests__"
   ],
   "packageManager": "yarn@3.6.1"

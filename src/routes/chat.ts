@@ -10,7 +10,7 @@ interface Message {
 
 interface ReqBody {
   messages: Message[];
-  stream?: any;
+  stream?: boolean;
   mockType?: string;
   mockFixedContents?: string;
   model?: string;

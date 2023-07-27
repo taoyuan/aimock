@@ -13,7 +13,7 @@ describe('AIMockDS', () => {
   });
 
   it('should load responses from the specified file', async () => {
-    const filePath = '/data/contents.txt';
+    const filePath = 'data/contents.txt';
 
     const ds = await AIMockDS.load(filePath);
 

@@ -2,7 +2,17 @@
   "name": "aimock",
   "version": "0.2.0",
   "description": "An OpenAI api simulator for developing and testing",
-  "keywords": [],
+  "keywords": [
+    "openai",
+    "chat",
+    "chatgpt",
+    "api",
+    "simulator",
+    "mock",
+    "mocking",
+    "testing",
+    "development"
+  ],
   "author": "TY <towyuan@outlook.com>",
   "license": "MIT",
   "main": "./dist/index.js",

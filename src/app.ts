@@ -21,9 +21,9 @@ export interface MockMainOptions extends MockApplicationOptions {
 export async function createApp(opts: MockApplicationOptions = {}) {
   opts = Object.assign(
     {
-      type: process.env.MOCK_TYPE ?? 'random',
-      mockFile: process.env.MOCK_FILE ?? 'data/contents.txt',
-      mockFileSeparator: process.env.MOCK_FILE_SEPARATOR ?? '\n',
+      type: process.env.MOCK_TYPE,
+      mockFile: process.env.MOCK_FILE,
+      mockFileSeparator: process.env.MOCK_FILE_SEPARATOR,
     },
     opts,
   );

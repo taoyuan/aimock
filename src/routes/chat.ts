@@ -1,7 +1,7 @@
 import express, {Request, Response} from 'express';
 
 import {MockType, openai} from '../types';
-import {MockRandoms} from '../utils/randoms';
+import {AIMockDS} from '../utils/ds';
 import {tokenize} from '../utils/tokenize';
 
 interface Message {
@@ -17,12 +17,12 @@ interface ReqBody {
   n?: number;
 }
 
-export function chat(opts: {type?: MockType} = {}) {
+export function chat(ds: AIMockDS, opts: {type?: MockType} = {}) {
   const router = express.Router();
   router.post('/v1/chat/completions', (req: Request<{}, {}, ReqBody>, res: Response) => {
     const defaultMockType: string = opts.type ?? 'random';
     const {messages, stream, mockType = defaultMockType, mockFixedContents, model = 'gpt-3.5-turbo'} = req.body;
-    const randomResponses: string[] = MockRandoms.getRandomContents();
+    const randomResponses: string[] = ds.data;
 
     // Check if 'messages' is provided and is an array
     if (!messages || !Array.isArray(messages)) {

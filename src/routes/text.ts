@@ -1,7 +1,7 @@
 import express, {Request, Response, Router} from 'express';
 
 import {MockType} from '../types';
-import {MockRandoms} from '../utils/randoms';
+import {AIMockDS} from '../utils/ds';
 import {tokenize} from '../utils/tokenize';
 
 interface RequestBody {
@@ -33,12 +33,12 @@ interface ResponseData {
   };
 }
 
-export function text(opts: {type?: MockType} = {}) {
+export function text(ds: AIMockDS, opts: {type?: MockType} = {}) {
   const router: Router = express.Router();
   router.post('/v1/completions', (req: Request<{}, {}, RequestBody>, res: Response) => {
     const defaultMockType: string = opts.type || 'random';
     const {model, prompt, stream, mockType = defaultMockType, mockFixedContents} = req.body;
-    const randomResponses: string[] = MockRandoms.getRandomContents();
+    const randomResponses: string[] = ds.data;
 
     // Check if 'prompt' is provided and is an array
     if (!prompt) {

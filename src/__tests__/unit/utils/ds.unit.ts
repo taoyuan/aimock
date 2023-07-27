@@ -1,14 +1,10 @@
-import {MockRandoms} from '../../../utils/randoms';
+import {AIMockDS} from '../../../utils/ds';
 
-describe('load function', () => {
-  beforeEach(() => {
-    MockRandoms.clear();
-  });
-
+describe('AIMockDS', () => {
   it('should load random responses if filePath is empty', async () => {
-    await MockRandoms.load();
+    const ds = await AIMockDS.load();
 
-    const responses = MockRandoms.getRandomContents();
+    const responses = ds.data;
     expect(responses).toEqual([
       'This is a random response 1.',
       'This is a random response 2.',
@@ -19,9 +15,9 @@ describe('load function', () => {
   it('should load responses from the specified file', async () => {
     const filePath = '/data/contents.txt';
 
-    await MockRandoms.load(filePath);
+    const ds = await AIMockDS.load(filePath);
 
-    const responses = MockRandoms.getRandomContents();
+    const responses = ds.data;
     // Add your expectations based on the contents of the file
     expect(responses).toMatchSnapshot();
   });
@@ -29,18 +25,17 @@ describe('load function', () => {
   it('should load empty responses for non-existent file', async () => {
     const filePath = 'non_existent_file.txt'; // A non-existent file path
 
-    await MockRandoms.load(filePath);
+    const ds = await AIMockDS.load(filePath);
 
-    const responses = MockRandoms.getRandomContents();
+    const responses = ds.data;
     expect(responses).toEqual([]);
   });
-});
 
-describe('randomContents function', () => {
   it('should return an array of random responses', () => {
+    const ds = new AIMockDS();
     // Assuming you have already loaded some random responses
     // using the load function before this test case
-    const responses = MockRandoms.getRandomContents();
+    const responses = ds.data;
 
     // Add your expectations based on the loaded random responses
     expect(Array.isArray(responses)).toBe(true);

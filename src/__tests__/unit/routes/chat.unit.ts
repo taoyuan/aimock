@@ -2,16 +2,15 @@ import express, {Express} from 'express';
 import request from 'supertest';
 
 import {chat} from '../../../routes/chat';
-import {MockRandoms} from '../../../utils/randoms';
+import {AIMockDS} from '../../../utils/ds';
 
 describe('chat router', () => {
   let app: Express;
 
   beforeAll(async () => {
-    await MockRandoms.load();
     app = express();
     app.use(express.json());
-    app.use(chat());
+    app.use(chat(await AIMockDS.load()));
   });
 
   it('should return 400 if "messages" is missing or not an array', async () => {

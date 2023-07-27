@@ -1,7 +1,7 @@
 import {Application} from 'express';
 import request from 'supertest';
 
-import {createApp} from '../..';
+import {createApp} from '../../app';
 
 describe('Test the root path', () => {
   let app: Application;

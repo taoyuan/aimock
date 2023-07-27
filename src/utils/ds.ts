@@ -3,20 +3,30 @@ import * as path from 'path';
 import * as readline from 'readline';
 import {Readable} from 'stream';
 
-export namespace MockRandoms {
-  let randomResponses: string[] = [];
+export class AIMockDS {
+  protected _data: string[] = [];
 
-  export async function load(filePath?: string, separator = '\n'): Promise<void> {
+  get data(): string[] {
+    return this._data;
+  }
+
+  static async load(filePath?: string, separator = '\n'): Promise<AIMockDS> {
+    const ds = new AIMockDS();
+    await ds.load(filePath, separator);
+    return ds;
+  }
+
+  clear() {
+    this._data = [];
+  }
+
+  async load(filePath?: string, separator = '\n'): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       const rootDir = path.resolve(__dirname, '../..');
       filePath = filePath ?? '';
 
       if (filePath === '') {
-        randomResponses = [
-          'This is a random response 1.',
-          'This is a random response 2.',
-          'This is a random response 3.',
-        ];
+        this._data = ['This is a random response 1.', 'This is a random response 2.', 'This is a random response 3.'];
         resolve();
       } else {
         const fPath = path.join(rootDir, filePath);
@@ -33,7 +43,7 @@ export namespace MockRandoms {
         let currentLine = '';
         rl.on('line', (line: string) => {
           if (line.trim() === separator) {
-            randomResponses.push(currentLine);
+            this._data.push(currentLine);
             currentLine = '';
           } else {
             currentLine += line + '\n\n';
@@ -42,7 +52,7 @@ export namespace MockRandoms {
 
         rl.on('close', () => {
           if (currentLine !== '') {
-            randomResponses.push(currentLine);
+            this._data.push(currentLine);
           }
           resolve();
         });
@@ -53,8 +63,4 @@ export namespace MockRandoms {
       }
     });
   }
-
-  export const clear = () => (randomResponses = []);
-
-  export const getRandomContents = () => randomResponses;
 }

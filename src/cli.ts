@@ -1,9 +1,9 @@
 import dotenv from 'dotenv';
 
-import {main} from './index';
+import {createAppAndStart} from './app';
 
 dotenv.config();
-main().catch(err => {
+createAppAndStart().catch(err => {
   console.error('Cannot start AIMock', err);
   process.exit(1);
 });

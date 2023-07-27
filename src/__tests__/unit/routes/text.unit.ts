@@ -2,16 +2,15 @@ import express, {Express} from 'express';
 import request from 'supertest';
 
 import {text} from '../../../routes/text';
-import {MockRandoms} from '../../../utils/randoms';
+import {AIMockDS} from '../../../utils/ds';
 
 describe('text router', () => {
   let app: Express;
 
   beforeAll(async () => {
-    await MockRandoms.load();
     app = express();
     app.use(express.json());
-    app.use(text());
+    app.use(text(await AIMockDS.load()));
   });
 
   it('should return 400 if "prompt" is missing', async () => {

@@ -2,13 +2,11 @@ import express, {Express} from 'express';
 import request from 'supertest';
 
 import image from '../../../routes/image';
-import {MockRandoms} from '../../../utils/randoms';
 
 describe('image router', () => {
   let app: Express;
 
   beforeAll(async () => {
-    await MockRandoms.load();
     app = express();
     app.use(express.json());
     app.use(image());

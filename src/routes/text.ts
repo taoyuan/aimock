@@ -101,7 +101,7 @@ export function text(ds: AIMockDS, opts: {type?: MockType} = {}) {
         } else {
           clearInterval(intervalId);
           data.choices[0] = {
-            index: 0,
+            index: chunkIndex,
             text: '',
             logprobs: null,
             finish_reason: 'stop',

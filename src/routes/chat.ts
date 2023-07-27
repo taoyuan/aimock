@@ -84,7 +84,7 @@ export function chat(ds: AIMockDS, opts: {type?: MockType} = {}) {
         } else {
           clearInterval(intervalId);
           data.choices[0] = {
-            index: 0,
+            index: chunkIndex,
             delta: {
               role: 'assistant',
             },

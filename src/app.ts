@@ -1,4 +1,5 @@
 import express, {Express, Request, Response} from 'express';
+import {Server} from 'net';
 
 import chat from './routes/chat';
 import image from './routes/image';
@@ -47,7 +48,7 @@ export async function createApp(opts: MockApplicationOptions = {}) {
   return app;
 }
 
-export async function createAppAndStart(opts: MockMainOptions = {}) {
+export async function createAppAndStart(opts: MockMainOptions = {}): Promise<[Server, Express]> {
   const app = await createApp(opts);
   const port = opts.port ?? process.env.MOCK_PORT ?? 5001;
   const server = app.listen(port, () => {

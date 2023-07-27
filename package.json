@@ -1,6 +1,6 @@
 {
   "name": "aimock",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "An OpenAI api simulator for developing and testing",
   "keywords": [
     "openai",

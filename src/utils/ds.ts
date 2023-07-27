@@ -29,7 +29,7 @@ export class AIMockDS {
         this._data = ['This is a random response 1.', 'This is a random response 2.', 'This is a random response 3.'];
         resolve();
       } else {
-        const fPath = path.join(rootDir, filePath);
+        const fPath = path.isAbsolute(filePath) ? filePath : path.join(rootDir, filePath);
         if (!fs.existsSync(fPath)) {
           resolve();
           return;

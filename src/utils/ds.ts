@@ -25,42 +25,42 @@ export class AIMockDS {
       const rootDir = path.resolve(__dirname, '../..');
       filePath = filePath ?? '';
 
-      if (filePath === '') {
-        this._data = ['This is a random response 1.', 'This is a random response 2.', 'This is a random response 3.'];
-        resolve();
-      } else {
-        const fPath = path.isAbsolute(filePath) ? filePath : path.join(rootDir, filePath);
-        if (!fs.existsSync(fPath)) {
-          resolve();
-          return;
-        }
-        const fileStream: Readable = fs.createReadStream(fPath);
-        const rl = readline.createInterface({
-          input: fileStream,
-          crlfDelay: Infinity,
-        });
-
-        let currentLine = '';
-        rl.on('line', (line: string) => {
-          if (line.trim() === separator) {
-            this._data.push(currentLine);
-            currentLine = '';
-          } else {
-            currentLine += line + '\n\n';
-          }
-        });
-
-        rl.on('close', () => {
-          if (currentLine !== '') {
-            this._data.push(currentLine);
-          }
-          resolve();
-        });
-
-        rl.on('error', (err: Error) => {
-          reject(err);
-        });
+      if (!filePath) {
+        this._data = Array.from({length: 10}, (_, i) => `This is a random response ${i + 1}.`);
+        return resolve();
       }
+
+      const fPath = path.isAbsolute(filePath) ? filePath : path.join(rootDir, filePath);
+      if (!fs.existsSync(fPath)) {
+        resolve();
+        return;
+      }
+      const fileStream: Readable = fs.createReadStream(fPath);
+      const rl = readline.createInterface({
+        input: fileStream,
+        crlfDelay: Infinity,
+      });
+
+      let currentLine = '';
+      rl.on('line', (line: string) => {
+        if (line.trim() === separator) {
+          this._data.push(currentLine);
+          currentLine = '';
+        } else {
+          currentLine += line + '\n\n';
+        }
+      });
+
+      rl.on('close', () => {
+        if (currentLine !== '') {
+          this._data.push(currentLine);
+        }
+        resolve();
+      });
+
+      rl.on('error', (err: Error) => {
+        reject(err);
+      });
     });
   }
 }

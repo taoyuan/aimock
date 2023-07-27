@@ -9,6 +9,13 @@ describe('AIMockDS', () => {
       'This is a random response 1.',
       'This is a random response 2.',
       'This is a random response 3.',
+      'This is a random response 4.',
+      'This is a random response 5.',
+      'This is a random response 6.',
+      'This is a random response 7.',
+      'This is a random response 8.',
+      'This is a random response 9.',
+      'This is a random response 10.',
     ]);
   });
 

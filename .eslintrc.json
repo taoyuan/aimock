@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "@nutol/eslint-config/eslintrc.js",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["prettier"],
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "rules": {
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
+}
+

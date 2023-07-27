@@ -1,0 +1,81 @@
+{
+  "name": "aimock",
+  "version": "0.1.0",
+  "description": "An OpenAI api simulator for developing and testing",
+  "keywords": [],
+  "author": "TY <towyuan@outlook.com>",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "engines": {
+    "node": ">=16"
+  },
+  "bin": "./bin/aimock",
+  "scripts": {
+    "prerelease": "yarn && yarn build && cross-env CI=1 yarn run test",
+    "release": "yarn prerelease && release-it",
+    "build": "nb-tsc -b",
+    "build:full": "yarn install && yarn run clean && yarn run build",
+    "lint": "yarn run prettier:check && yarn run eslint",
+    "lint:fix": "yarn run eslint:fix && yarn run prettier:fix",
+    "eslint": "nb-eslint --report-unused-disable-directives --cache .",
+    "eslint:fix": "yarn run eslint --fix",
+    "prettier:cli": "nb-prettier \"**/*.ts\" \"**/*.js\" \"**/*.md\"",
+    "prettier:check": "yarn run prettier:cli --check",
+    "prettier:fix": "yarn run prettier:cli --write",
+    "clean": "del 'dist' 'coverage' '.nyc_output' '*.tsbuildinfo'",
+    "pretest": "yarn run clean && yarn run build",
+    "test": "yarn run jest",
+    "test:ci": "jest --collectCoverage --coverageDirectory=\"./coverage\" --reporters=default --reporters=jest-junit --watchAll=false",
+    "jest": "jest",
+    "posttest": "yarn run lint",
+    "dev": "tsx src/index.ts",
+    "start": "yarn build && node dist/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@nutol/build": "^0.2.14",
+    "@nutol/eslint-config": "^0.2.9",
+    "@nutol/ts-config": "^0.2.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.2",
+    "@types/micromatch": "^4.0.2",
+    "@types/node": "^20.4.1",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
+    "cross-env": "^7.0.3",
+    "del-cli": "^5.0.0",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-eslint-plugin": "^5.1.0",
+    "eslint-plugin-mocha": "^10.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^29.6.1",
+    "jest-junit": "^16.0.0",
+    "openai": "^3.3.0",
+    "prettier": "^2.8.8",
+    "release-it": "^15.11.0",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.1",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
+  },
+  "release-it": {
+    "hooks": {
+      "after:bump": "yarn"
+    }
+  },
+  "files": [
+    "README.md",
+    "bin",
+    "dist",
+    "src",
+    "!*/__tests__"
+  ],
+  "packageManager": "yarn@3.6.1"
+}

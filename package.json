@@ -1,6 +1,6 @@
 {
   "name": "aimock",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An OpenAI api simulator for developing and testing",
   "keywords": [],
   "author": "TY <towyuan@outlook.com>",

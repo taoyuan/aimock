@@ -1,4 +1,5 @@
 import express, {Request, Response, Router} from 'express';
+import {generate} from 'randomstring';
 
 import {AIMockDS} from '../ds';
 import {tokenize} from '../tokenize';
@@ -76,7 +77,7 @@ export function text(ds: AIMockDS, opts: {type?: MockType} = {}) {
       res.setHeader('Connection', 'keep-alive');
 
       const data: ResponseData = {
-        id: 'cmpl-7UR4UcvmeD79Xva3UxkKkL2es6b5W',
+        id: `cmpl-${generate(30)}`,
         object: 'chat.completion.chunk',
         created: Date.now(),
         model: model,
@@ -125,7 +126,7 @@ export function text(ds: AIMockDS, opts: {type?: MockType} = {}) {
       }
 
       const response: ResponseData = {
-        id: 'cmpl-2nYZXNHxx1PeK1u8xXcE1Fqr1U6Ve',
+        id: `cmpl-${generate(30)}`,
         object: 'chat.completion',
         created: Math.floor(Date.now() / 1000),
         model: model,

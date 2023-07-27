@@ -1,8 +1,8 @@
 import express, {Express} from 'express';
 import request from 'supertest';
 
+import {AIMockDS} from '../../../ds';
 import {text} from '../../../routes/text';
-import {AIMockDS} from '../../../utils/ds';
 
 describe('text router', () => {
   let app: Express;

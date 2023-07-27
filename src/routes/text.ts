@@ -1,8 +1,8 @@
 import express, {Request, Response, Router} from 'express';
 
+import {AIMockDS} from '../ds';
+import {tokenize} from '../tokenize';
 import {MockType} from '../types';
-import {AIMockDS} from '../utils/ds';
-import {tokenize} from '../utils/tokenize';
 
 interface RequestBody {
   model?: string;

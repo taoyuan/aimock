@@ -1,8 +1,8 @@
 import express, {Express} from 'express';
 import request from 'supertest';
 
+import {AIMockDS} from '../../../ds';
 import {chat} from '../../../routes/chat';
-import {AIMockDS} from '../../../utils/ds';
 
 describe('chat router', () => {
   let app: Express;

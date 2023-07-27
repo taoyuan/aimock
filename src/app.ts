@@ -1,11 +1,11 @@
 import express, {Express, Request, Response} from 'express';
 import {Server} from 'net';
 
+import {AIMockDS} from './ds';
 import chat from './routes/chat';
 import image from './routes/image';
 import text from './routes/text';
 import {MockType} from './types';
-import {AIMockDS} from './utils/ds';
 
 export interface MockApplicationOptions {
   type?: MockType;

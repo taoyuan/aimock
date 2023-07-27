@@ -10,7 +10,7 @@ export class AIMockDS {
     return this._data;
   }
 
-  static async load(filePath?: string, separator = '\n'): Promise<AIMockDS> {
+  static async load(filePath?: string, separator?: string): Promise<AIMockDS> {
     const ds = new AIMockDS();
     await ds.load(filePath, separator);
     return ds;
@@ -20,9 +20,9 @@ export class AIMockDS {
     this._data = [];
   }
 
-  async load(filePath?: string, separator = '\n'): Promise<void> {
+  async load(filePath?: string, separator = '@@@@'): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      const rootDir = path.resolve(__dirname, '../..');
+      const rootDir = path.resolve(__dirname, '..');
       filePath = filePath ?? '';
 
       if (!filePath) {

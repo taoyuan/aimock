@@ -1,4 +1,4 @@
-import {AIMockDS} from '../../../utils/ds';
+import {AIMockDS} from '../../ds';
 
 describe('AIMockDS', () => {
   it('should load random responses if filePath is empty', async () => {

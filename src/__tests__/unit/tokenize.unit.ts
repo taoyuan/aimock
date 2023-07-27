@@ -1,4 +1,4 @@
-import {tokenize} from '../../../utils/tokenize';
+import {tokenize} from '../../tokenize';
 
 describe('tokenize function', () => {
   it('should tokenize the content correctly', () => {

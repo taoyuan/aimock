@@ -1,8 +1,8 @@
 import express, {Request, Response} from 'express';
 
+import {AIMockDS} from '../ds';
+import {tokenize} from '../tokenize';
 import {MockType, openai} from '../types';
-import {AIMockDS} from '../utils/ds';
-import {tokenize} from '../utils/tokenize';
 
 interface Message {
   content: string;

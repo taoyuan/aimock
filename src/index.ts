@@ -13,6 +13,8 @@ export const routes = {
   text,
 };
 
+export * from './app';
+
 if (require.main === module) {
   dotenv.config();
   createAppAndStart().catch(err => {
